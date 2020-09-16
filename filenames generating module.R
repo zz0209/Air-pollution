@@ -47,7 +47,6 @@ for (i in (1:length(month))){
 }
 
 ###making the vector
-
 name_num_vec <- vector()
 
 for (i in (1:length(name_num))){
@@ -57,14 +56,12 @@ for (i in (1:length(name_num))){
 name_num_vec
 
 ###genetating strings
-
 name_str <- vector()
 
 for (i in (1:length(name_num_vec))){
-  name_str[i] <- paste("china_cities_", name_num_vec[i], sep = "")
+  name_str[i] <- paste("china_cities_", name_num_vec[i], ".csv", sep = "")
 }
 
 name_str
 
 #
-
