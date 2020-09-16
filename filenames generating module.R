@@ -1,5 +1,5 @@
-# generating a vector of filenames in "城市_20150101-20151231"
-year <- 2015
+# generating a vector of filenames in "城市_20160101-20161231"
+year <- 2016
 month <- 1:12
 date <- list()
 
@@ -27,8 +27,6 @@ date
 
 ## pasting to generating a vector of filenames
 
-length(date[[1]])
-
 ###generating the date number
 name_num <- date
 
@@ -46,7 +44,7 @@ for (i in (1:length(month))){
   }
 }
 
-###making the vector
+###forming the vector
 name_num_vec <- vector()
 
 for (i in (1:length(name_num))){
@@ -65,3 +63,4 @@ for (i in (1:length(name_num_vec))){
 name_str
 
 #
+
