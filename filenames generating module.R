@@ -1,6 +1,4 @@
-
 # generating a vector of filenames in "城市_20150101-20151231"
-
 year <- 2015
 month <- 1:12
 date <- list()
