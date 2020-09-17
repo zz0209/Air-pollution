@@ -30,3 +30,11 @@ datacol$totalpopulation <- datacol$totalpopulation * 10000
 ###scaling gdp
 datacol$gdp <- datacol$gdp * 10000
 
+##extracting the rows 2014~2016
+datarow <- split(datacol, datacol$year, drop = F)
+
+data2014 <- datarow$`2014`
+data2015 <- datarow$`2015`
+data2016 <- datarow$`2016`
+
+#combining the GDP
