@@ -2,6 +2,8 @@
 #library(xlsx)
 #a <- read.xlsx("~/Desktop/课外活动/科研项目/论文项目/数据/区县层面数据库/str_area_cnt_e0.xlsx", sheetIndex = 1)
 
+######first using Microsoft Office Excel to arrange the data by cityname such that data for the same city goes together
+
 options(max.print = 1000000)
 
 #extracting the useful information
@@ -49,7 +51,7 @@ combin <- function(df){
       dfcount <- c(dfcount, i-1)
     }
   }
-  dfc[-dfcount,]
+  dfc[-dfcount,-2]
 }
 
 usedata2014 <- combin(data2014) #checking
@@ -83,8 +85,12 @@ elims <- function(df){
 }
 
 elimsusedata2014 <- elims(elimdusedata2014)
-
-##combining again the same cities
-
+elimsusedata2014
 
 ##deleting the cities that are not in the csv
+
+###assigning name attributes
+numdata2014 <- as.data.frame(lapply(elimsusedata2014[,4],as.numeric))
+chrdata2014 <- as.data.frame(lapply(elimsusedata2014[,1],as.character))
+names(numdata2014) <- chrdata2014
+numdata2014
