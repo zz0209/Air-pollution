@@ -43,7 +43,7 @@ data2015
 combin <- function(df){
   dfc <- df
   dfcount <- vector()
-  for (i in 2:(nrow(df)-1)){
+  for (i in 2:(nrow(df))){
     if (dfc[i,1] == dfc[i-1,1]){
       dfc[i,5] <- dfc[i,5] + dfc[i-1,5]
       dfcount <- c(dfcount, i-1)
@@ -57,4 +57,34 @@ usedata2014[c(1:20),]
 
 #matching the data of the two forms
 
+##eliminating the suffixes
+elim <- function(df){
+  for (i in 1:(nrow(df))){
+    df[i,1] <- sub("市$","",df[i,1])
+    df[i,1] <- sub("地区$","",df[i,1])
+    df[i,1] <- sub("盟$","",df[i,1])
+    df[i,1] <- sub("自治州$","",df[i,1])
+  }
+  df
+}
 
+usedata2014
+elimdusedata2014 <- elim(usedata2014)
+
+##eliminating the atonomous states
+elims <- function(df){
+  dfcount <- vector()
+  for (i in 1:(nrow(df))){
+    if (grepl("族$",df[i,1])){
+      dfcount <- c(dfcount,i)
+    }
+  }
+  df[-dfcount,]
+}
+
+elimsusedata2014 <- elims(elimdusedata2014)
+
+##combining again the same cities
+
+
+##deleting the cities that are not in the csv
