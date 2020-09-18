@@ -42,20 +42,19 @@ data2015
 #combining the GDP
 combin <- function(df){
   dfc <- df
+  dfcount <- vector()
   for (i in 2:(nrow(df)-1)){
     if (dfc[i,1] == dfc[i-1,1]){
       dfc[i,5] <- dfc[i,5] + dfc[i-1,5]
-      #dfc <- dfc[-(i-1),]
+      dfcount <- c(dfcount, i-1)
     }
   }
-  dfc
+  dfc[-dfcount,]
 }
 
-combin(data2014)
-data2014
+usedata2014 <- combin(data2014) #checking
+usedata2014[c(1:20),]
 
-i <- 2
+#matching the data of the two forms
 
-data2014[i,1] == data2014[i-1,1]
-data2014[i,5] <- data2014[i,5] + data2014[i-1,5]
-data2014
+
