@@ -37,4 +37,25 @@ data2014 <- datarow$`2014`
 data2015 <- datarow$`2015`
 data2016 <- datarow$`2016`
 
+data2015
+
 #combining the GDP
+combin <- function(df){
+  dfc <- df
+  for (i in 2:(nrow(df)-1)){
+    if (dfc[i,1] == dfc[i-1,1]){
+      dfc[i,5] <- dfc[i,5] + dfc[i-1,5]
+      #dfc <- dfc[-(i-1),]
+    }
+  }
+  dfc
+}
+
+combin(data2014)
+data2014
+
+i <- 2
+
+data2014[i,1] == data2014[i-1,1]
+data2014[i,5] <- data2014[i,5] + data2014[i-1,5]
+data2014
