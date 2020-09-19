@@ -21,12 +21,43 @@ for (i in 1:(length(name_str))){
 
 class(dataframes[[1]])
 dataframes[[320]][1,]
-unlist(dataframes[[320]][1,])
+#unlist(dataframes[[320]][1,])
 names(dataframes[[320]][1,])
-dfstest <- as.numeric(as.character(unlist(dataframes[[320]][1,])))
+#dfstest <- as.numeric(as.character(unlist(dataframes[[320]][1,])))
 dfstest <- as.character(unlist(dataframes[[320]][1,]))
 class(dfstest)
+names(dfstest) <- names(dataframes[[320]][1,])
 dfstest
 #
 
+
+determbig <- names(numdata2014) %in% names(dfstest)
+determbig
+length(numdata2014[determbig])  
+numdata2014[determbig]  #xls gdp
+#names(numdata2014[determ]) %in% names(dfstest)
+
+determcsv <- names(dfstest) %in% names(numdata2014)
+determcsv
+length(dfstest[determcsv])
+dfstest[determcsv]  #csv pollution
+
+#library(ggplot2)
+#ggplot(GDPpollution,aes(x=numdata2014[determbig],y=dfstest[determcsv]))+geom_point()
+
+#plot(x=numdata2014[determbig],y=dfstest[determcsv])
+
+csvlist201401 <- as.list(dfstest[determcsv])   #csv有用数据list
+xlslist2014 <- as.list(numdata2014[determbig])   #xls有用数据list
+xlslist2014[["上海"]]
+csvlist201401[["上海"]]
+
+
+newxlslist2014 <- list()
+for (i in 1:length(csvlist201401)){  #排序xls数据
+  newxlslist2014[i] <- xlslist2014[[names(csvlist201401)[i]]]
+}
+newxlslist2014  #和csv城市顺序一样的xlsGDP数据
+
+plot(newxlslist2014,dfstest[determcsv])
 
