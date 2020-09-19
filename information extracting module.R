@@ -18,6 +18,7 @@ data = read_excel("~/Desktop/课外活动/科研项目/论文项目/数据/区�
 nrow(data) #check if read fully
 data[32372,]
 class(data)
+data
 
 ##extracting the columns
 datacol <- data[,c(3,4,5,12,21)]
@@ -51,7 +52,7 @@ combin <- function(df){
       dfcount <- c(dfcount, i-1)
     }
   }
-  dfc[-dfcount,-2]
+  dfc[-dfcount,]
 }
 
 usedata2014 <- combin(data2014) #checking
@@ -59,13 +60,27 @@ usedata2014[c(1:20),]
 
 #matching the data of the two forms
 
-##eliminating the suffixes
+##eliminating the suffixes      ##############要加县级！！
 elim <- function(df){
   for (i in 1:(nrow(df))){
     df[i,1] <- sub("市$","",df[i,1])
     df[i,1] <- sub("地区$","",df[i,1])
     df[i,1] <- sub("盟$","",df[i,1])
     df[i,1] <- sub("自治州$","",df[i,1])
+    if (df[i,1] == "省直辖县级行政单位"){
+      df[i,1] <- sub("市$","",df[i,2])
+      df[i,1] <- sub("自治县$","",df[i,2])
+      df[i,1] <- sub("自治州$","",df[i,2])
+      df[i,1] <- sub("林区$","",df[i,2])
+      df[i,1] <- sub("县$","",df[i,2])
+    } else if (df[i,1] == "自治区直辖县级行政单位"){
+      df[i,1] <- sub("市$","",df[i,2])
+      df[i,1] <- sub("自治县$","",df[i,2])
+      df[i,1] <- sub("自治州$","",df[i,2])
+      df[i,1] <- sub("林区$","",df[i,2])
+      df[i,1] <- sub("县$","",df[i,2])
+      df[i,1] <- sub("市$","",df[i,2])
+    }
   }
   df
 }
@@ -90,7 +105,22 @@ elimsusedata2014
 ##deleting the cities that are not in the csv
 
 ###assigning name attributes
-numdata2014 <- as.data.frame(lapply(elimsusedata2014[,4],as.numeric))
+numdata2014 <- as.data.frame(lapply(elimsusedata2014[,5],as.numeric))
 chrdata2014 <- as.data.frame(lapply(elimsusedata2014[,1],as.character))
-names(numdata2014) <- chrdata2014
 numdata2014
+chrdata2014
+
+chrdata2014 <- as.character(unlist(chrdata2014))
+class(chrdata2014)#checking
+numdata2014 <- as.numeric(as.character(unlist(numdata2014)))
+class(numdata2014)#checking
+numdata2014
+chrdata2014
+
+length(chrdata2014)
+length(numdata2014)
+
+names(numdata2014) <- chrdata2014 #naming
+numdata2014
+
+
