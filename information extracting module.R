@@ -55,8 +55,8 @@ combin <- function(df){
   dfc[-dfcount,]
 }
 
-usedata2014 <- combin(data2014) #checking
-usedata2014[c(1:20),]
+usedata2016 <- combin(data2016) #checking
+usedata2016[c(1:20),]
 
 #matching the data of the two forms
 
@@ -85,8 +85,8 @@ elim <- function(df){
   df
 }
 
-usedata2014
-elimdusedata2014 <- elim(usedata2014)
+usedata2016
+elimdusedata2016 <- elim(usedata2016)
 
 ##eliminating the atonomous states
 elims <- function(df){
@@ -99,28 +99,31 @@ elims <- function(df){
   df[-dfcount,]
 }
 
-elimsusedata2014 <- elims(elimdusedata2014)
-elimsusedata2014
+elimsusedata2016 <- elims(elimdusedata2016)
+elimsusedata2016
 
 ##deleting the cities that are not in the csv
 
 ###assigning name attributes
-numdata2014 <- as.data.frame(lapply(elimsusedata2014[,5],as.numeric))
-chrdata2014 <- as.data.frame(lapply(elimsusedata2014[,1],as.character))
-numdata2014
-chrdata2014
+as.numeric(elimsusedata2016[1,5])
 
-chrdata2014 <- as.character(unlist(chrdata2014))
-class(chrdata2014)#checking
-numdata2014 <- as.numeric(as.character(unlist(numdata2014)))
-class(numdata2014)#checking
-numdata2014
-chrdata2014
+numdata2016 <- as.data.frame(lapply(elimsusedata2016[,5],as.numeric))
+chrdata2016 <- as.data.frame(lapply(elimsusedata2016[,1],as.character))
+numdata2016
+chrdata2016
 
-length(chrdata2014)
-length(numdata2014)
+chrdata2016 <- as.character(unlist(chrdata2016))
 
-names(numdata2014) <- chrdata2014 #naming
-numdata2014
+#unlist(chrdata2014)
+class(chrdata2016)#checking
+numdata2016 <- as.numeric(as.character(unlist(numdata2016)))
+class(numdata2016)#checking
+numdata2016
+chrdata2016
 
+length(chrdata2016)
+length(numdata2016)
+
+names(numdata2016) <- chrdata2016 #naming
+numdata2016
 
