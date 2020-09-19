@@ -20,6 +20,13 @@ for (i in 1:(length(name_str))){
 }
 
 class(dataframes[[1]])
-dataframes[[320]]
-
+dataframes[[320]][1,]
+unlist(dataframes[[320]][1,])
+names(dataframes[[320]][1,])
+dfstest <- as.numeric(as.character(unlist(dataframes[[320]][1,])))
+dfstest <- as.character(unlist(dataframes[[320]][1,]))
+class(dfstest)
+dfstest
 #
+
+
