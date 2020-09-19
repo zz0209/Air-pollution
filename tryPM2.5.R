@@ -4,9 +4,9 @@ dataframes[[320]][1,]
 #unlist(dataframes[[320]][1,])
 names(dataframes[[320]][1,])
 #dfstest <- as.numeric(as.character(unlist(dataframes[[320]][1,])))
-dfstest <- as.character(unlist(dataframes[[320]][1,]))
+dfstest <- as.character(unlist(dataframes[[320]][2,]))
 class(dfstest)
-names(dfstest) <- names(dataframes[[320]][1,])
+names(dfstest) <- names(dataframes[[320]][2,])
 dfstest
 #
 
