@@ -87,16 +87,24 @@ length(dfstest[determcsv])
 
 newxlslist2016_sim <- newxlslist2016*1e-9
 
-plot(newxlslist2016_sim,dfstest[determcsv])
+#plot(newxlslist2016_sim,dfstest[determcsv])  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class(newxlslist2016_sim)
 
 class(dfstest[determcsv])
-lm2016AQI <- lm(newxlslist2016_sim~dfstest[determcsv])  #~~~~~~~~~~~~~~~~AQI2016
+#lm2016AQI <- lm(newxlslist2016_sim~dfstest[determcsv])  #~~~~~~~~~~~~~~~~AQI2016
 lm2016AQI <- lm(dfstest[determcsv]~newxlslist2016_sim)  #~~~~~~~~~~~~~~~~AQI2016
 
 summary(lm2016AQI)
 lm2016AQI
+abline(lm2016AQI)
+
+
+
+
+
+#################################
+
 
 #Sys.setenv(R_MAX_VSIZE = 16e9)
 Sys.setenv('R_MAX_VSIZE'=32000000000)
