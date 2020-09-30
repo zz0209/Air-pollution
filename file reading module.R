@@ -8,7 +8,7 @@ for (i in 1:(length(name_str))){
   dict_str[i] <- paste("~/Desktop/课外活动/科研项目/论文项目/数据/PM2.5浓度数据/全国空气质量/城市_20160101-20161231/", name_str[i], sep = "")
 }
 
-dict_str
+dict_str   ## is a list of directories
 
 ##reading and recording the data
 dataframes <- list()
@@ -19,6 +19,7 @@ for (i in 1:(length(name_str))){
   }
 }
 
+#dataframes    ## is a list of csv dataframes
 class(dataframes[[1]])
 dataframes[[320]][1,]
 #unlist(dataframes[[320]][1,])
@@ -26,16 +27,16 @@ names(dataframes[[320]][1,])
 #dfstest <- as.numeric(as.character(unlist(dataframes[[320]][1,])))
 
 
-##########
+########## 
 names(dataframes[[320]][1,]) == names(dataframes[[2]][1,])  #cheking if names are matching
-############
+############   这之前一直和污染物种类没有关系
 
 dfstest <- vector()     #####take average of each city (AQI)
 store <- vector()
-for (i in 1:ncol(dataframes[[1]])){
+for (i in 1:ncol(dataframes[[1]])){      
   for (j in 1:length(dataframes)){
     if (!j == 61){
-      store[j] <- dataframes[[j]][1,i]        #~~~~~~~~~~~~~
+      store[j] <- dataframes[[j]][1,i]        ## change the '1' if want another pollutant ~~~~~~~~~~~~~
     }
   }
   dfstest[i] <- mean(na.omit(store))
