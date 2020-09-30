@@ -97,7 +97,7 @@ lm2016AQI <- lm(dfstest[determcsv]~newxlslist2016_sim)  #~~~~~~~~~~~~~~~~AQI2016
 
 summary(lm2016AQI)
 lm2016AQI
-abline(lm2016AQI)
+#abline(lm2016AQI)
 
 
 
@@ -117,13 +117,3 @@ Sys.setenv('R_MAX_VSIZE'=32000000000)
 library("ggplot2")
 
 
-
-df <- data.frame(x = 0:1000, y = x*0.05043 + 177.31916)
-
-x <- 0:1000
-y <- x*0.05043 + 177.31916
-
-
-  
-ggplot(df, mapping = aes(x = x, y = y)) + geom_point(color = "darkred")
-lines(x,y,type='l')
