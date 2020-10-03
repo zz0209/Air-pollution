@@ -108,7 +108,7 @@ lm2016AQI
 
 
 #Sys.setenv(R_MAX_VSIZE = 16e9)
-Sys.setenv('R_MAX_VSIZE'=32000000000)
+#Sys.setenv('R_MAX_VSIZE'=32000000000)
 
 #lines(x = dfstest[determcsv], y = dfstest[determcsv]*6.919e+08 + 8.117e+10)
 #abline()
