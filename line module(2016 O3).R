@@ -6,7 +6,7 @@ store <- vector()
 for (i in 1:ncol(dataframes[[1]])){      
   for (j in 1:length(dataframes)){
     if (!j == 61){
-      store[j] <- dataframes[[j]][4,i]        ## change the '1' if want another pollutant ~~~~~~~~~~~~~
+      store[j] <- dataframes[[j]][10,i]        ## change the '1' if want another pollutant ~~~~~~~~~~~~~
     }
   }
   dfstest[i] <- mean(na.omit(store))
@@ -58,17 +58,17 @@ class(newxlslist2016_sim)
 
 class(dfstest[determcsv])
 #lm2016AQI <- lm(newxlslist2016_sim~dfstest[determcsv])  #~~~~~~~~~~~~~~~~AQI2016
-lm2016PM10 <- lm(dfstest[determcsv]~newxlslist2016_sim)  #~~~~~~~~~~~~~~~~PM10 2016
+lm2016O3 <- lm(dfstest[determcsv]~newxlslist2016_sim)  #~~~~~~~~~~~~~~~~O3 2016
 
-summary(lm2016PM10)
-lm2016PM10
+summary(lm2016O3)
+lm2016O3
 
 #####尝试制作dataframe进行ggplot####xxx
 
 #lm(newxlslist2016_sim~dfstest[determcsv])
 
 x <- c(0:1000)
-y <- x * 0.01869 + 86.48472
+y <- x * -0.004929 + 45.755064
 
 ggplot(data = NULL, aes(x = newxlslist2016_sim, y = dfstest[determcsv])) +  #开始绘图
   geom_point(color = "darkred") +
