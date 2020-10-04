@@ -127,3 +127,78 @@ length(numdata2016)
 names(numdata2016) <- chrdata2016 #naming
 numdata2016
 
+## 2014 --------------------------------------------------------------------------------------
+
+usedata2014 <- combin(data2014) #checking
+usedata2014[c(1:20),]
+
+#matching the data of the two forms
+
+##eliminating the suffixes      ##############要加县级！！
+elim <- function(df){
+  for (i in 1:(nrow(df))){
+    df[i,1] <- sub("市$","",df[i,1])
+    df[i,1] <- sub("地区$","",df[i,1])
+    df[i,1] <- sub("盟$","",df[i,1])
+    df[i,1] <- sub("自治州$","",df[i,1])
+    if (df[i,1] == "省直辖县级行政单位"){
+      df[i,1] <- sub("市$","",df[i,2])
+      df[i,1] <- sub("自治县$","",df[i,2])
+      df[i,1] <- sub("自治州$","",df[i,2])
+      df[i,1] <- sub("林区$","",df[i,2])
+      df[i,1] <- sub("县$","",df[i,2])
+    } else if (df[i,1] == "自治区直辖县级行政单位"){
+      df[i,1] <- sub("市$","",df[i,2])
+      df[i,1] <- sub("自治县$","",df[i,2])
+      df[i,1] <- sub("自治州$","",df[i,2])
+      df[i,1] <- sub("林区$","",df[i,2])
+      df[i,1] <- sub("县$","",df[i,2])
+      df[i,1] <- sub("市$","",df[i,2])
+    }
+  }
+  df
+}
+
+usedata2014
+usedata2016
+elimdusedata2014 <- elim(usedata2014)
+
+##eliminating the atonomous states
+elims <- function(df){
+  dfcount <- vector()
+  for (i in 1:(nrow(df))){
+    if (grepl("族$",df[i,1])){
+      dfcount <- c(dfcount,i)
+    }
+  }
+  df[-dfcount,]
+}
+
+elimsusedata2014 <- elims(elimdusedata2014)
+elimsusedata2014
+elimsusedata2016
+
+##deleting the cities that are not in the csv
+
+###assigning name attributes
+as.numeric(elimsusedata2016[1,5])
+
+numdata2014 <- as.data.frame(lapply(elimsusedata2014[,5],as.numeric))
+chrdata2014 <- as.data.frame(lapply(elimsusedata2014[,1],as.character))
+numdata2014
+chrdata2014
+
+chrdata2014 <- as.character(unlist(chrdata2014))
+
+#unlist(chrdata2014)
+class(chrdata2014)#checking
+numdata2014 <- as.numeric(as.character(unlist(numdata2014)))
+class(numdata2014)#checking
+numdata2014
+chrdata2014
+
+length(chrdata2014)
+length(numdata2014)
+
+names(numdata2014) <- chrdata2014 #naming
+numdata2014
